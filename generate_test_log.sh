@@ -1,8 +1,9 @@
 #!/bin/bash
 # Script to generate a larger test log file for comprehensive testing
+# Usage: ./generate_test_log.sh [number_of_entries]
 
 # Number of log entries to generate
-entries=1000
+entries=${1:-1000}  # Default to 1000 if not specified
 
 # Output file
 output_file="large_sample.log"
@@ -51,4 +52,4 @@ for ((i=1; i<=entries; i++)); do
     printf -v second_fmt "%02d" $second
     
     # Write log entry
-    echo "$ip - - [$day/May/2025:$hour_fmt:$minute_fmt:$second_fmt -0500] \"$method $path HTTP/1.1\" $
+    echo "$ip - - [$day/May/2025:$hour_fmt:$minute_fmt:$second_fmt -0500] \"$method $path HTTP/1.1\" $status $bytes" >> "$output_file"
